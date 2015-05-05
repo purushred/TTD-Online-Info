@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TTD Online Availability</string>
+
+    <string name="action_about">About</string>
+    <string name="legend">Legend</string>
+    <string name="no_network_connection">No network connection. Try again later.</string>
+    <string name="adUnitId">ca-app-pub-7965587014035488/4695157750</string>
+    <string name="note">Please note the information is available from 9AM to 12AM only.</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string-array name="services_array">
+        <item>Seva Availability</item>
+        <item>Special Darshan Availability</item>
+        <item>Sudarsanam Availability</item>
+        <item>Accommodation Availability</item>
+    </string-array>
+</resources>
