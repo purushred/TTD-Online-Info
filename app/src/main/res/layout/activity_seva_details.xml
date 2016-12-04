@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_seva_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.smart.ttddarshan.SevaDetailsActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/sevaName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sevaItemImageView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:text="Vasanthosthavam"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/selectedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sevaName"
+                android:text="20-Nov-2016"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/sevaPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selectedDate"
+                android:layout_marginTop="10dp"
+                android:text="300Rs."
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/personsAllowed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sevaPrice"
+                android:layout_marginTop="10dp"
+                android:text="Max 3 Persons"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/availableSlots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/personsAllowed"
+                android:layout_marginTop="10dp"
+                android:text="300 Slots"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/reportingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/availableSlots"
+                android:layout_marginTop="10dp"
+                android:text="11AM"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/sevaStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reportingTime"
+                android:layout_marginTop="10dp"
+                android:text="Seva Start"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/sevaEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sevaStartTime"
+                android:layout_marginTop="10dp"
+                android:text="Seva End"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+</RelativeLayout>

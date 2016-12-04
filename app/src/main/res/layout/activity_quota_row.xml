@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="10dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/sevaName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.40"
+        android:gravity="center"
+        android:text="Seva Name" />
+
+    <TextView
+        android:id="@+id/performedDays"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.35"
+        android:gravity="center"
+        android:text="Days Performed" />
+
+    <TextView
+        android:id="@+id/quota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:text="Quota" />
+
+</LinearLayout>

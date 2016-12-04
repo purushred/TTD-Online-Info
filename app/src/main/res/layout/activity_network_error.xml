@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingBottom="10dp"
+        android:paddingBottom="12dp"
         android:text="@string/no_network_connection"
-        android:textColor="@color/white"/>
+        android:textColor="@color/gray" />
 
     <Button
         android:id="@+id/retryButton"
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/errorText"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/orange_circle"
         android:padding="15dp"
-        android:background="@drawable/green_rectangle_shape"
         android:text="Retry"
         android:textColor="@color/white" />
 

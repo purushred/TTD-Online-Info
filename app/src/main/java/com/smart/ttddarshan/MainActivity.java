@@ -3,23 +3,30 @@ package com.smart.ttddarshan;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class MainActivity extends ActionBarActivity {
+import com.smart.ttddarshan.adapter.CustomDrawerAdapter;
+import com.smart.ttddarshan.fragment.ECounterFragment;
+import com.smart.ttddarshan.fragment.LegendDialogFragment;
+import com.smart.ttddarshan.fragment.SevaFragment;
+import com.smart.ttddarshan.fragment.SpecialEntryDarshanFragment;
+import com.smart.ttddarshan.utils.AppUtils;
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -27,13 +34,11 @@ public class MainActivity extends ActionBarActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] ttdServices;
-    private Bundle savedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        this.savedInstanceState = savedInstanceState;
         boolean isNetworkUp = AppUtils.isNetworkOnline((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE));
         if (!isNetworkUp)
             buildNetworkErrorUI();
@@ -60,16 +65,16 @@ public class MainActivity extends ActionBarActivity {
 
     private void displayMainScreen() {
         setContentView(R.layout.activity_main);
-
         mTitle = mDrawerTitle = getTitle();
         ttdServices = getResources().getStringArray(R.array.services_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, ttdServices));
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        /*mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, ttdServices));*/
+        mDrawerList.setAdapter(new CustomDrawerAdapter(this, R.layout.drawer_list_item, ttdServices));
+        mDrawerList.setOnItemClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer,
@@ -85,17 +90,14 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        if (savedInstanceState == null) {
-            selectItem(0);
-        }
         mDrawerToggle.syncState();
+        selectItem(0);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        //inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -106,23 +108,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void selectItem(int position) {
-        Fragment fragment = new SevaFragment();
+        Fragment fragment = null;
+
         switch (position) {
             case 0:
                 fragment = new SevaFragment();
                 break;
             case 1:
+                fragment = SpecialEntryDarshanFragment.getInstance();
                 break;
             case 2:
-                break;
-            case 3:
+                fragment = new ECounterFragment();
                 break;
         }
-
-        /*Bundle args = new Bundle();
-        args.putInt(SevaFragment.ARG_PLANET_NUMBER, position);
-        fragment.setArguments(args);*/
-
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
@@ -156,7 +154,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -165,15 +163,16 @@ public class MainActivity extends ActionBarActivity {
             LegendDialogFragment fragment = new LegendDialogFragment();
             fragment.show(getFragmentManager(), "Legend");
             return true;
+        } else if (id == R.id.quota) {
+            Intent intent = new Intent(this, ESevaQuotaActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
-    /* The click listner for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        selectItem(position);
+        ((CustomDrawerAdapter) parent.getAdapter()).selectItem(position);
     }
 }

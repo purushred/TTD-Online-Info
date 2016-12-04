@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.15"
+        android:gravity="center"
+        android:text="Date"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+
+    <Button
+        android:id="@+id/nineAMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="9AM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/tenAMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="10AM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/elevenAMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="11AM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/twelvAMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="12PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/onePMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="1PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/twoPMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="2PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/threePMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="3PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/fourPMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="4PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/fivePMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="5PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/sixPMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="6PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/sevenPMButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.10"
+        android:gravity="center"
+        android:text="7PM"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+</LinearLayout>
