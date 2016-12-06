@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private FirebaseAnalytics mFirebaseAnalytics;
     private int accomType = 1;
     private Spinner spinner;
-    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,10 +152,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 fragment = SpecialEntryDarshanFragment.getInstance();
                 break;
             case 2:
+                spinner.setOnItemSelectedListener(null);
                 fragment = AccommodationFragment.getInstance();
-                Bundle bundle = new Bundle();
-                bundle.putInt("accomType", accomType);
-                fragment.setArguments(bundle);
                 getSupportActionBar().getCustomView().setVisibility(View.VISIBLE);
                 spinner.setOnItemSelectedListener(this);
                 break;

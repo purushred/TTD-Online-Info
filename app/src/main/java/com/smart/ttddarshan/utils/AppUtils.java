@@ -4,18 +4,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by purushoy on 3/30/2015.
  */
 public class AppUtils {
 
-    public static final String TTD_SEVA_URL = "http://212.47.239.192:4000/";
-    public static Map<String, String> sessionDetailsMap = new HashMap<>(2);
-    public static String sessionId = "";
-    public static String sessionToken = "";
+    public static final String TTD_SEVA_URL = "http://212.47.239.192:3000/";
 
     /**
      * To check whether internet is enabled.

@@ -49,7 +49,7 @@ public class AccommodationFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        getDarshanData(getArguments().getInt("location"));
+        getDarshanData(1);
 
         final AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -80,6 +80,7 @@ public class AccommodationFragment extends Fragment {
     public void getDarshanData(final int location) {
 
         final String locationStr;
+        if (location == 0) return;
         if (location == 1) {
             locationStr = "Tirumala";
         } else {
