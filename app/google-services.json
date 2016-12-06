@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "56772055019",
+    "firebase_url": "https://ttddarshan-83ca0.firebaseio.com",
+    "project_id": "ttddarshan-83ca0",
+    "storage_bucket": "ttddarshan-83ca0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56772055019:android:3a51a2d87956e5b9",
+        "android_client_info": {
+          "package_name": "com.smart.ttddarshan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56772055019-15o97vl1kmovvqgsbtlletaapagnscje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smart.ttddarshan",
+            "certificate_hash": "90B7EF05C79F1319E130704F41F7EBCD6A558C0D"
+          }
+        },
+        {
+          "client_id": "56772055019-rbv71o9pi7m1p8ugg5nji7vvo06hn6hb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1D_ZmnRqxYvYFJ1tcBsbhEp3VJ7wVQwo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56772055019-rbv71o9pi7m1p8ugg5nji7vvo06hn6hb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

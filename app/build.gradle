@@ -5,7 +5,6 @@ android {
     buildToolsVersion "25.0.0"
 
     dexOptions {
-        incremental true
         javaMaxHeapSize "4g"
     }
 
@@ -13,8 +12,8 @@ android {
         applicationId "com.smart.ttddarshan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 5
-        versionName "1.4"
+        versionCode 6
+        versionName "1.5"
         multiDexEnabled true
     }
     buildTypes {
@@ -35,4 +34,10 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.google.firebase:firebase-core:9.8.0'
+    compile 'com.android.support:support-v4:25.0.0'
 }
+
+
+
+apply plugin: 'com.google.gms.google-services'

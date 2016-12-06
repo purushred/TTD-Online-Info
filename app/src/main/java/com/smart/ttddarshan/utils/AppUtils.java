@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class AppUtils {
 
-    public static final String TTD_SEVA_URL = "http://212.47.239.192:3000/";
+    public static final String TTD_SEVA_URL = "http://212.47.239.192:4000/";
     public static Map<String, String> sessionDetailsMap = new HashMap<>(2);
     public static String sessionId = "";
     public static String sessionToken = "";

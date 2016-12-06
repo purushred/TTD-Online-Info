@@ -16,17 +16,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.smart.ttddarshan.adapter.CustomDrawerAdapter;
+import com.smart.ttddarshan.fragment.AccommodationFragment;
 import com.smart.ttddarshan.fragment.ECounterFragment;
 import com.smart.ttddarshan.fragment.LegendDialogFragment;
 import com.smart.ttddarshan.fragment.SevaFragment;
 import com.smart.ttddarshan.fragment.SpecialEntryDarshanFragment;
 import com.smart.ttddarshan.utils.AppUtils;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -34,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] ttdServices;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private int accomType = 1;
+    private Spinner spinner;
+    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +100,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        spinner = new Spinner(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner_list_item_array, R.layout.spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        getSupportActionBar().setCustomView(spinner);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().getCustomView().setVisibility(View.GONE);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
         selectItem(0);
+
     }
 
     @Override
@@ -99,6 +121,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        accomType = i + 1; // Tirumala-1 Tirupati-2
+        AccommodationFragment fragment = (AccommodationFragment) AccommodationFragment.getInstance();
+        fragment.getDarshanData(accomType);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     /* Called whenever we call invalidateOptionsMenu() */
@@ -109,7 +143,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void selectItem(int position) {
         Fragment fragment = null;
-
+        getSupportActionBar().getCustomView().setVisibility(View.GONE);
+        spinner.setOnItemSelectedListener(null);
         switch (position) {
             case 0:
                 fragment = new SevaFragment();
@@ -118,15 +153,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 fragment = SpecialEntryDarshanFragment.getInstance();
                 break;
             case 2:
+                fragment = AccommodationFragment.getInstance();
+                Bundle bundle = new Bundle();
+                bundle.putInt("accomType", accomType);
+                fragment.setArguments(bundle);
+                getSupportActionBar().getCustomView().setVisibility(View.VISIBLE);
+                spinner.setOnItemSelectedListener(this);
+                break;
+            case 3:
                 fragment = new ECounterFragment();
                 break;
         }
+
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
         mDrawerList.setItemChecked(position, true);
         setTitle(ttdServices[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    private void logToFirebase(long id, String name) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, String.valueOf(id));
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "text");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
     }
 
     @Override
@@ -174,5 +226,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectItem(position);
         ((CustomDrawerAdapter) parent.getAdapter()).selectItem(position);
+        logToFirebase(id, ((CustomDrawerAdapter) parent.getAdapter()).getItem(position));
     }
 }

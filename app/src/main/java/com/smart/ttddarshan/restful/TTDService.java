@@ -1,7 +1,7 @@
 package com.smart.ttddarshan.restful;
 
+import com.smart.ttddarshan.vo.AccommodationDetailsVO;
 import com.smart.ttddarshan.vo.DarshanDetailsVO;
-import com.smart.ttddarshan.vo.DarshanSlotVO;
 import com.smart.ttddarshan.vo.SevaAvailabilityVO;
 import com.smart.ttddarshan.vo.SevaDetailsVO;
 import com.smart.ttddarshan.vo.TTDVO;
@@ -31,4 +31,10 @@ public interface TTDService {
 
     @GET("/darshandetails/")
     public DarshanDetailsVO getDarshanDetails(@Query("darshanDate") String darshanDate);
+
+    @GET("/accommodationavailability/")
+    public SevaAvailabilityVO getAccommodationAvailability(@Query("accomId") String accomId);
+
+    @GET("/accommodationdetails/")
+    public List<AccommodationDetailsVO> getAccommodationDetails(@Query("accomDate") String accomDate, @Query("location") String location);
 }
