@@ -25,7 +25,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.smart.ttddarshan.adapter.CustomDrawerAdapter;
 import com.smart.ttddarshan.fragment.AccommodationFragment;
 import com.smart.ttddarshan.fragment.ECounterFragment;
-import com.smart.ttddarshan.fragment.LegendDialogFragment;
 import com.smart.ttddarshan.fragment.SevaFragment;
 import com.smart.ttddarshan.fragment.SpecialEntryDarshanFragment;
 import com.smart.ttddarshan.utils.AppUtils;
@@ -208,11 +207,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         int id = item.getItemId();
-        if (id == R.id.legend) {
-            LegendDialogFragment fragment = new LegendDialogFragment();
-            fragment.show(getFragmentManager(), "Legend");
-            return true;
-        } else if (id == R.id.quota) {
+        if (id == R.id.quota) {
             Intent intent = new Intent(this, ESevaQuotaActivity.class);
             startActivity(intent);
         }

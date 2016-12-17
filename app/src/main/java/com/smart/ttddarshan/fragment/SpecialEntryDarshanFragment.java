@@ -49,8 +49,6 @@ public class SpecialEntryDarshanFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        getDarshanData();
-
         final AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -62,6 +60,12 @@ public class SpecialEntryDarshanFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getDarshanData();
     }
 
     @Override

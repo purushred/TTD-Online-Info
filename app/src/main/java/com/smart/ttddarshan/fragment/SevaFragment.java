@@ -57,7 +57,7 @@ public class SevaFragment extends Fragment {
             }
         });
 
-        prepareBankData();
+        prepareSevaData();
         return rootView;
     }
 
@@ -74,7 +74,7 @@ public class SevaFragment extends Fragment {
         return fragment;
     }
 
-    public void prepareBankData() {
+    public void prepareSevaData() {
         SevaVO sevaVO = new SevaVO("Suprabatham", "Desc1", "Suprabatam.jpg", 3);
         sevaList.add(sevaVO);
 

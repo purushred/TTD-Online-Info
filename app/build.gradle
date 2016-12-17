@@ -12,8 +12,8 @@ android {
         applicationId "com.smart.ttddarshan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 7
-        versionName "1.6"
+        versionCode 9
+        versionName "1.8"
         multiDexEnabled true
     }
     buildTypes {
@@ -36,8 +36,8 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'com.google.firebase:firebase-core:9.8.0'
     compile 'com.android.support:support-v4:25.0.0'
+    compile 'com.android.support:multidex:1.0.1'
+
 }
-
-
 
 apply plugin: 'com.google.gms.google-services'

@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 
 import com.smart.ttddarshan.R;
-import com.smart.ttddarshan.fragment.TTDDialogFragment;
 import com.smart.ttddarshan.vo.AttrNameValue;
 
 /**
@@ -123,7 +122,6 @@ public class SpecialDarshanAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (css.startsWith("g") || css.startsWith("r") || css.startsWith("b")) {
                     AttrNameValue attr = new AttrNameValue(css, null);
-                    TTDDialogFragment.showDialog(mContext, attr);
                 }
             }
         });

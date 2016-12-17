@@ -49,8 +49,6 @@ public class AccommodationFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        getDarshanData(1);
-
         final AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -62,6 +60,12 @@ public class AccommodationFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getDarshanData(1);
     }
 
     @Override
