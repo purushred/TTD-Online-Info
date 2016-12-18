@@ -1,13 +1,16 @@
 package com.smart.ttddarshan.adapter;
 
-import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.smart.ttddarshan.R;
+import com.smart.ttddarshan.SpecialEntryDarshanDetailsActivity;
 import com.smart.ttddarshan.vo.DarshanSlotVO;
 
 import java.util.List;
@@ -18,10 +21,13 @@ import java.util.List;
 
 public class SpecialDarshanSlotsAdapter extends RecyclerView.Adapter<SpecialDarshanSlotsAdapter.MyViewHolder> {
 
+    private final SpecialEntryDarshanDetailsActivity activity;
     private List<DarshanSlotVO> darshanSlots;
 
-    public SpecialDarshanSlotsAdapter(List<DarshanSlotVO> darshanSlots) {
+    public SpecialDarshanSlotsAdapter(List<DarshanSlotVO> darshanSlots,
+                                      SpecialEntryDarshanDetailsActivity activity) {
         this.darshanSlots = darshanSlots;
+        this.activity = activity;
     }
 
     @Override
@@ -51,6 +57,7 @@ public class SpecialDarshanSlotsAdapter extends RecyclerView.Adapter<SpecialDars
         TextView ticketPrice;
         TextView noOfTicketsView;
         TextView slotTimeView;
+        RelativeLayout relativeLayout;
 
         MyViewHolder(View view) {
             super(view);
@@ -58,6 +65,16 @@ public class SpecialDarshanSlotsAdapter extends RecyclerView.Adapter<SpecialDars
             noOfTicketsView = (TextView) view.findViewById(R.id.noOfTicketsView);
             ticketPrice = (TextView) view.findViewById(R.id.ticketPrice);
             maxPersonsView = (TextView) view.findViewById(R.id.maxPersonsView);
+            relativeLayout = (RelativeLayout) view.findViewById(R.id.relativeLayout);
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String url = "https://ttdsevaonline.com/#/sedAvailability";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    activity.startActivity(i);
+                }
+            });
         }
     }
 }

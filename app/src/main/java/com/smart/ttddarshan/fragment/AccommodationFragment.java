@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.smart.ttddarshan.R;
 import com.smart.ttddarshan.adapter.AccommodationAdapter;
 import com.smart.ttddarshan.restful.TTDService;
@@ -37,6 +38,7 @@ public class AccommodationFragment extends Fragment {
     private Context context;
     private static Fragment fragment;
     private RecyclerView recyclerView;
+    static int adCount;
 
     @Nullable
     @Override
@@ -96,11 +98,15 @@ public class AccommodationFragment extends Fragment {
 
             @Override
             protected void onPreExecute() {
-                pd = new ProgressDialog(context);
-                pd.setMessage("Searching accommodations in " + locationStr + "..");
-                pd.setIndeterminate(true);
-                pd.setCancelable(false);
-                pd.show();
+                try {
+                    pd = new ProgressDialog(getActivity());
+                    pd.setMessage("Searching accommodations in " + locationStr + "..");
+                    pd.setIndeterminate(true);
+                    pd.setCancelable(false);
+                    pd.show();
+                } catch (Exception ex) {
+                    Log.e("Exception", ex.toString());
+                }
             }
 
             @Override
@@ -117,14 +123,32 @@ public class AccommodationFragment extends Fragment {
 
             @Override
             protected void onPostExecute(SevaAvailabilityVO specialDarshanVO) {
-                pd.dismiss();
+                if (pd != null && pd.isShowing()) {
+                    pd.dismiss();
+                }
                 if (specialDarshanVO == null || specialDarshanVO.availableDatesList.length == 0) {
-                    Toast.makeText(context, "Unable to get accommodation details.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Unable to get accommodation details.", Toast.LENGTH_LONG).show();
                     return;
                 }
                 mAdapter = new AccommodationAdapter(specialDarshanVO, AccommodationFragment.this, location);
                 recyclerView.setAdapter(mAdapter);
+                initInterstitialAds();
             }
         }.execute();
+    }
+
+    private void initInterstitialAds() {
+        final InterstitialAd mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId(getString(R.string.interAdUnitId));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                if (mInterstitialAd.isLoaded()) {
+                    if ((++adCount) % 3 == 0)
+                        mInterstitialAd.show();
+                }
+            }
+        });
     }
 }

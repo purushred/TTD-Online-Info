@@ -1,16 +1,19 @@
 package com.smart.ttddarshan;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.smart.ttddarshan.vo.SevaDetailsVO;
-import com.smart.ttddarshan.vo.SevaVO;
 
 public class SevaDetailsActivity extends AppCompatActivity {
 
@@ -30,6 +33,16 @@ public class SevaDetailsActivity extends AppCompatActivity {
         TextView reportingTime = (TextView) findViewById(R.id.reportingTime);
         TextView sevaStartTime = (TextView) findViewById(R.id.sevaStartTime);
         TextView sevaEndTime = (TextView) findViewById(R.id.sevaEndTime);
+        Button bookNow = (Button) findViewById(R.id.bookButton);
+        bookNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://ttdsevaonline.com/#/sevaCal";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
         sevaName.setText(sevaDetails.sevaName);
         selectedDate.setText("Seva Date: " + sevaDetails.sevaDate);

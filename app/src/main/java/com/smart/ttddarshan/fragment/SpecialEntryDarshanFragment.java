@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.smart.ttddarshan.R;
 import com.smart.ttddarshan.adapter.SpecialEntryDarshanAdapter;
 import com.smart.ttddarshan.restful.TTDService;
@@ -37,6 +38,7 @@ public class SpecialEntryDarshanFragment extends Fragment {
     private Context context;
     private static Fragment fragment;
     private RecyclerView recyclerView;
+    private static int adCount;
 
     @Nullable
     @Override
@@ -54,7 +56,6 @@ public class SpecialEntryDarshanFragment extends Fragment {
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             public void onAdLoaded() {
-                Log.e("Ads", "onAdLoaded");
                 mAdView.bringToFront();
             }
         });
@@ -66,6 +67,21 @@ public class SpecialEntryDarshanFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getDarshanData();
+    }
+
+    private void initInterstitialAds() {
+        final InterstitialAd mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId(getString(R.string.interAdUnitId));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                if (mInterstitialAd.isLoaded()) {
+                    if ((++adCount) % 3 == 0)
+                        mInterstitialAd.show();
+                }
+            }
+        });
     }
 
     @Override
@@ -89,7 +105,7 @@ public class SpecialEntryDarshanFragment extends Fragment {
 
             @Override
             protected void onPreExecute() {
-                pd = new ProgressDialog(context);
+                pd = new ProgressDialog(getActivity());
                 pd.setMessage("Loading special darshan availability details..");
                 pd.setIndeterminate(true);
                 pd.setCancelable(false);
@@ -110,14 +126,17 @@ public class SpecialEntryDarshanFragment extends Fragment {
 
             @Override
             protected void onPostExecute(SevaAvailabilityVO specialDarshanVO) {
-                pd.dismiss();
+                if (pd != null && pd.isShowing())
+                    pd.dismiss();
                 if (specialDarshanVO == null || specialDarshanVO.availableDatesList.length == 0) {
-                    Toast.makeText(context, "Unable to get Special Darshan details.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Unable to get Special Darshan details.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                initInterstitialAds();
                 mAdapter = new SpecialEntryDarshanAdapter(specialDarshanVO, SpecialEntryDarshanFragment.this);
                 recyclerView.setAdapter(mAdapter);
             }
         }.execute();
+
     }
 }

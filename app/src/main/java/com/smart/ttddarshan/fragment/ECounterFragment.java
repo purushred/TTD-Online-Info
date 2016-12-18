@@ -17,19 +17,15 @@ import com.smart.ttddarshan.adapter.ECounterAdapter;
 public class ECounterFragment extends Fragment {
 
     public GridView gridview;
-    private InterstitialAd mInterstitialAd;
     private ECounterAdapter counterAdapter;
-
-    public ECounterFragment() {
-    }
+    private static int adCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_ecounter, container, false);
-        loadAd();
-
+        initInterstitialAds();
         gridview = (GridView) rootView.findViewById(R.id.gridview);
         counterAdapter = new ECounterAdapter(getActivity());
         gridview.setAdapter(counterAdapter);
@@ -42,21 +38,18 @@ public class ECounterFragment extends Fragment {
         return rootView;
     }
 
-    private void loadAd() {
-
-        mInterstitialAd = new InterstitialAd(this.getActivity());
-        mInterstitialAd.setAdUnitId(getString(R.string.adUnitId));
-
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                requestNewInterstitial();
-            }
-        });
-    }
-
-    private void requestNewInterstitial() {
+    private void initInterstitialAds() {
+        final InterstitialAd mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId(getString(R.string.interAdUnitId));
         AdRequest adRequest = new AdRequest.Builder().build();
         mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                if (mInterstitialAd.isLoaded()) {
+                    if ((++adCount) % 3 == 0)
+                        mInterstitialAd.show();
+                }
+            }
+        });
     }
 }

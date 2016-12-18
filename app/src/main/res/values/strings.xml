@@ -4,7 +4,7 @@
     <string name="action_about">About</string>
     <string name="legend">Legend</string>
     <string name="no_network_connection">No network connection. Try again later.</string>
-    <string name="adUnitId">ca-app-pub-7965587014035488/4695157750</string>
+    <string name="interAdUnitId">ca-app-pub-7965587014035488/4695157750</string>
     <string name="banner_ad_unit_id">ca-app-pub-7965587014035488/6601562958</string>
     <string name="note">Please note the information is available from 9AM to 12AM only.</string>
     <string name="drawer_open">Open navigation drawer</string>

@@ -52,7 +52,6 @@ public class SevaFragment extends Fragment {
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             public void onAdLoaded() {
-                Log.e("Ads", "onAdLoaded");
                 mAdView.bringToFront();
             }
         });

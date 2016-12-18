@@ -95,15 +95,30 @@
                 android:layout_marginTop="10dp"
                 android:text="Seva End"
                 android:textSize="16sp" />
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sevaEndTime"
+                android:layout_centerHorizontal="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id" />
+
+            <Button
+                android:id="@+id/bookButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/adView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="Book Now"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:theme="@style/AppTheme.Button" />
+
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" />
 </RelativeLayout>

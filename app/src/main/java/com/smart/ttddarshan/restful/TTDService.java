@@ -4,7 +4,6 @@ import com.smart.ttddarshan.vo.AccommodationDetailsVO;
 import com.smart.ttddarshan.vo.DarshanDetailsVO;
 import com.smart.ttddarshan.vo.SevaAvailabilityVO;
 import com.smart.ttddarshan.vo.SevaDetailsVO;
-import com.smart.ttddarshan.vo.TTDVO;
 
 import java.util.List;
 
@@ -13,12 +12,6 @@ import retrofit.http.Query;
 
 public interface TTDService {
 
-    @GET("/")
-    public TTDVO getAvailabilityMonths(@Query("index") int index, @Query("eventTarget") String eventTarget,
-                                       @Query("eventArg") String eventArg, @Query("viewStateGenerator") String viewStateGenerator,
-                                       @Query("cmbDate") String cmbDate, @Query("cmbSeva") String cmbSeva,
-                                       @Query("lastFocus") String lastFocus, @Query("eventValidation") String eventValidation,
-                                       @Query("viewState") String viewState);
 
     @GET("/sevaavailability/")
     public SevaAvailabilityVO getSevaAvailability(@Query("sevaId") String sevaId);

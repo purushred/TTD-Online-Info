@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        /*mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, ttdServices));*/
         mDrawerList.setAdapter(new CustomDrawerAdapter(this, R.layout.drawer_list_item, ttdServices));
         mDrawerList.setOnItemClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
