@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.smart.ttddarshan.AccommodationDetailsActivity;
 import com.smart.ttddarshan.R;
+import com.smart.ttddarshan.utils.AppUtils;
 import com.smart.ttddarshan.vo.AccommodationDetailsVO;
 
 import java.util.List;
@@ -72,6 +73,7 @@ public class AccommodationSlotsAdapter extends RecyclerView.Adapter<Accommodatio
             relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    AppUtils.initInterstitialAds(activity);
                     String url = "https://ttdsevaonline.com/#/accommodationCal";
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));

@@ -1,8 +1,14 @@
 package com.smart.ttddarshan.utils;
 
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.smart.ttddarshan.R;
 
 /**
  * Created by purushoy on 3/30/2015.
@@ -10,6 +16,7 @@ import android.util.Log;
 public class AppUtils {
 
     public static final String TTD_SEVA_URL = "http://212.47.239.192:3000/";
+    private static int adCount;
 
     /**
      * To check whether internet is enabled.
@@ -35,4 +42,20 @@ public class AppUtils {
         return status;
     }
 
+    public static void initInterstitialAds(Context context) {
+        final InterstitialAd mInterstitialAd = new InterstitialAd(context);
+        mInterstitialAd.setAdUnitId(context.getString(R.string.interAdUnitId));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                if (mInterstitialAd.isLoaded()) {
+                    if ((++adCount) == 3) {
+                        adCount = 0;
+                        mInterstitialAd.show();
+                    }
+                }
+            }
+        });
+    }
 }

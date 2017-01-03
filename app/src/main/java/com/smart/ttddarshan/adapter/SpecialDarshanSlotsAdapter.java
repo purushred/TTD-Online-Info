@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.smart.ttddarshan.R;
 import com.smart.ttddarshan.SpecialEntryDarshanDetailsActivity;
+import com.smart.ttddarshan.utils.AppUtils;
 import com.smart.ttddarshan.vo.DarshanSlotVO;
 
 import java.util.List;
@@ -69,6 +70,7 @@ public class SpecialDarshanSlotsAdapter extends RecyclerView.Adapter<SpecialDars
             relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    AppUtils.initInterstitialAds(activity);
                     String url = "https://ttdsevaonline.com/#/sedAvailability";
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));

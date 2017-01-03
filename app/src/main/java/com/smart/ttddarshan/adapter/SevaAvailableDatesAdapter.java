@@ -107,6 +107,7 @@ public class SevaAvailableDatesAdapter extends RecyclerView.Adapter<SevaAvailabl
                             activity.startActivity(intent);
                         }
                     }.execute();
+                    AppUtils.initInterstitialAds(activity);
                 }
             });
         } catch (ParseException e) {

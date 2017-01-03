@@ -67,6 +67,7 @@ public class SpecialEntryDarshanAdapter extends RecyclerView.Adapter<SpecialEntr
             public void onClick(final View view) {
                 new AsyncTask<Void, Void, DarshanDetailsVO>() {
                     ProgressDialog pd = new ProgressDialog(fragment.getActivity());
+
                     @Override
                     protected void onPreExecute() {
                         pd.setMessage("Loading special darshan details..");
@@ -99,6 +100,7 @@ public class SpecialEntryDarshanAdapter extends RecyclerView.Adapter<SpecialEntr
                         fragment.startActivity(intent);
                     }
                 }.execute();
+                AppUtils.initInterstitialAds(fragment.getActivity());
             }
         });
     }

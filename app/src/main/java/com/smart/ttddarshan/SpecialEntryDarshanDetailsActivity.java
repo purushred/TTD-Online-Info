@@ -12,17 +12,16 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.smart.ttddarshan.adapter.SpecialDarshanSlotsAdapter;
+import com.smart.ttddarshan.utils.AppUtils;
 import com.smart.ttddarshan.vo.DarshanDetailsVO;
 
 public class SpecialEntryDarshanDetailsActivity extends AppCompatActivity {
-
-    private static int adCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_special_entry_darshan_details);
-        initInterstitialAds();
+        AppUtils.initInterstitialAds(this);
         DarshanDetailsVO darshanDetails = (DarshanDetailsVO) getIntent().getSerializableExtra("darshanDetails");
         if (darshanDetails.darshanSlots != null && darshanDetails.darshanSlots.size() > 0)
             getSupportActionBar().setTitle("Darshan Slots: " + darshanDetails.darshanSlots.get(0).darshanDate);
@@ -40,21 +39,6 @@ public class SpecialEntryDarshanDetailsActivity extends AppCompatActivity {
         mAdView.setAdListener(new AdListener() {
             public void onAdLoaded() {
                 mAdView.bringToFront();
-            }
-        });
-    }
-
-    private void initInterstitialAds() {
-        final InterstitialAd mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interAdUnitId));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mInterstitialAd.loadAd(adRequest);
-        mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                if (mInterstitialAd.isLoaded()) {
-                    if ((++adCount) % 3 == 0)
-                        mInterstitialAd.show();
-                }
             }
         });
     }

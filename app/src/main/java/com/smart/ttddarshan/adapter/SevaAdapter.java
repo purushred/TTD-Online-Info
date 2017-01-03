@@ -104,6 +104,7 @@ public class SevaAdapter extends RecyclerView.Adapter<SevaAdapter.MyViewHolder> 
                         fragment.startActivity(intent);
                     }
                 }.execute((SevaVO) view.getTag(view.getId()));
+                AppUtils.initInterstitialAds(fragment.getActivity());
             }
         });
     }

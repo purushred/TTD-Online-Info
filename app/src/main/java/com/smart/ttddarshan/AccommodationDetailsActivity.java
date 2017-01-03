@@ -12,6 +12,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.smart.ttddarshan.adapter.AccommodationSlotsAdapter;
+import com.smart.ttddarshan.utils.AppUtils;
 import com.smart.ttddarshan.vo.AccomDetailsWrapper;
 import com.smart.ttddarshan.vo.AccommodationDetailsVO;
 
@@ -19,13 +20,11 @@ import java.util.List;
 
 public class AccommodationDetailsActivity extends AppCompatActivity {
 
-    private static int adCount;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_special_entry_darshan_details);
-        initInterstitialAds();
+        AppUtils.initInterstitialAds(this);
         AccomDetailsWrapper wrapper = (AccomDetailsWrapper) getIntent().getSerializableExtra("accomDetails");
         List<AccommodationDetailsVO> accomDetailsList = wrapper.accommodationDetailsVOList;
         if (accomDetailsList != null && accomDetailsList.size() > 0)
@@ -44,21 +43,6 @@ public class AccommodationDetailsActivity extends AppCompatActivity {
         mAdView.setAdListener(new AdListener() {
             public void onAdLoaded() {
                 mAdView.bringToFront();
-            }
-        });
-    }
-
-    private void initInterstitialAds() {
-        final InterstitialAd mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interAdUnitId));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mInterstitialAd.loadAd(adRequest);
-        mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                if (mInterstitialAd.isLoaded()) {
-                    if ((++adCount) % 3 == 0)
-                        mInterstitialAd.show();
-                }
             }
         });
     }

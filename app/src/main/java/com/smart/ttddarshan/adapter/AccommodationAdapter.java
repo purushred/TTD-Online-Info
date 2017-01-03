@@ -106,6 +106,7 @@ public class AccommodationAdapter extends RecyclerView.Adapter<AccommodationAdap
                         fragment.startActivity(intent);
                     }
                 }.execute();
+                AppUtils.initInterstitialAds(fragment.getActivity());
             }
         });
     }
